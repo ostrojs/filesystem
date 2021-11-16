@@ -1,5 +1,4 @@
 const path = require('path')
-const { v4 } = require("uuid");
 const FileNotFoundException = require('./FileNotFoundException')
 const FileDeleteException = require('./fileDeleteException')
 const FileUploadException = require('./fileUploadException')
@@ -69,11 +68,7 @@ class FilesystemAdapter {
     }
 
     put($path, content, options = {}) {
-        if (!options.filename) {
-            options.filename = v4()
-        }
-
-        $path = path.join($path, options.filename)
+     
         return new Promise((resolve, reject) => {
             this[kAdapter].write($path, content, options, (err, data, basePath) => {
                 if (err) {
@@ -91,7 +86,7 @@ class FilesystemAdapter {
     }
 
     putFileAs($path, $file, $name, $options = {}) {
-        $options.filename = $name
+        $path = path.join($path,$name)
         return this.put($path, $file.getBufferData(), $options);
     }
 

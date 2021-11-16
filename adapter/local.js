@@ -1,6 +1,7 @@
 const fs = require('fs-extra')
 const CoreAdapter = require('./CoreAdapter')
 const path = require('path')
+const { v4 } = require("uuid");
 const kHandler = Symbol('handler')
 
 class Local extends CoreAdapter {
@@ -74,26 +75,37 @@ class Local extends CoreAdapter {
 
         let callback = Array.from(rest).find(arg => typeof arg == 'function')
         let location = this.applyPathPrefix($path);
-        this.ensureDirectory(this.dirname(location), () => {
-            fs.writeFile(location, $contents, (error, data) => {
-                if (typeof this[kHandler].write == 'function') {
-                    this[kHandler].write({
-                        basePath: location,
-                        path: $path,
-                        options,
-                        callback,
-                        error,
-                        content: $contents
-                    })
-                } else {
-                    callback(error, {
-                        'type': 'file',
-                        'path': location,
-                        'message': 'File created successfully'
-                    }, location)
-                }
-            })
-        });
+        fs.stat(location).then(res=>{
+            if(res.isDirectory()){
+               return path.join(location,v4())
+            }
+            return location
+        })
+        .catch(e=>location)
+        .then(location=>{
+            this.ensureDirectory(this.dirname(location), () => {
+                fs.writeFile(location, $contents, (error, data) => {
+                    if (typeof this[kHandler].write == 'function') {
+                        this[kHandler].write({
+                            basePath: location,
+                            path: $path,
+                            options,
+                            callback,
+                            error,
+                            content: $contents
+                        })
+                    } else {
+                        callback(error, {
+                            'type': 'file',
+                            'path': location,
+                            'message': 'File created successfully'
+                        }, location)
+                    }
+                })
+            });
+        })
+
+        
 
     }
 
