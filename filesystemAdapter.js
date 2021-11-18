@@ -1,5 +1,5 @@
 const path = require('path')
-const FileNotFoundException = require('./FileNotFoundException')
+const FileNotFoundException = require('./fileNotFoundException')
 const FileDeleteException = require('./fileDeleteException')
 const FileUploadException = require('./fileUploadException')
 const DirectoryCreateException = require('./directoryCreateException')
