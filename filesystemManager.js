@@ -65,7 +65,7 @@ class FileSystemManager extends Manager {
     }
 
     getDefaultCloudDriver() {
-        return this.getConfig('cloud');
+        return super.getConfig('cloud');
     }
 
     registerToRequest(FileRequest) {
