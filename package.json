@@ -1,6 +1,6 @@
 {
   "name": "@ostro/filesystem",
-  "version": "0.0.0-alpha.3",
+  "version": "0.0.0-alpha.5",
   "description": "filesystem module for OstroJS",
   "main": "filesystemManager.js",
   "scripts": {
@@ -19,7 +19,10 @@
   },
   "engineStrict": true,
   "keywords": [
-    "filesystem"
+    "filesystem",
+    "storage",
+    "NodeJS Filesystem",
+    "OstroJS Filesystem"
   ],
   "author": "amar",
   "license": "MIT",
