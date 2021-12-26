@@ -8,7 +8,7 @@ class FileSystemManager extends Manager {
 
     $type = 'filesystem';
 
-    constructor($app){
+    constructor($app) {
         super($app)
         this[kHandler] = this.getConfig('handler')
         if (typeof this[kHandler] != 'function' || typeof this[kHandler] != 'object') {
@@ -43,7 +43,7 @@ class FileSystemManager extends Manager {
         return super.resolve($name, $config)
     }
 
-  
+
     createLocalDriver($config) {
         return this.adapt(new(require('./adapter/local'))($config['root'], $config), $config);
     }
@@ -57,7 +57,7 @@ class FileSystemManager extends Manager {
     }
 
     adapt(adapter, config) {
-        return new FilesystemAdapter(adapter,this[kHandler]);
+        return new FilesystemAdapter(adapter, this[kHandler]);
     }
 
     getConfig(name) {
@@ -82,7 +82,7 @@ class FileSystemManager extends Manager {
         }
 
     }
-    
+
 }
 
 module.exports = FileSystemManager

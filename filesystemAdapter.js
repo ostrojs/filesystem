@@ -38,8 +38,9 @@ class FilesystemAdapter {
     }
 
     delete($path, ...rest) {
-        let callback = Array.from(rest).find(arg => typeof arg == 'function')
-        let options = Array.from(rest).find(arg => typeof arg == 'object') || {}
+        rest = Array.from(rest)
+        let callback = rest.find(arg => typeof arg == 'function')
+        let options = rest.find(arg => typeof arg == 'object') || {}
         if (callback)
             return this[kAdapter].delete($path, options, callback)
         else {
@@ -68,7 +69,7 @@ class FilesystemAdapter {
     }
 
     put($path, content, options = {}) {
-     
+
         return new Promise((resolve, reject) => {
             this[kAdapter].write($path, content, options, (err, data, basePath) => {
                 if (err) {
@@ -81,12 +82,11 @@ class FilesystemAdapter {
     }
 
     putFile($path, $file, $options = {}) {
-        $options.filename = $file.getHashname()
-        return this.putFileAs($path, $file, $options);
+        return this.putFileAs($path, $file, $file.getHashname(), $options);
     }
 
     putFileAs($path, $file, $name, $options = {}) {
-        $path = path.join($path,$name)
+        $path = path.join($path, $name)
         return this.put($path, $file.getBufferData(), $options);
     }
 

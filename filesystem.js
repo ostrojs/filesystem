@@ -44,8 +44,6 @@ class Filesystem extends FilesystemContract {
             return fs.chmod($path, $mode);
         }
         return fs.stat($path).then(stat => {
-            console.log(stat)
-            console.log(stat.mode)
             return stats.mode
         });
 
