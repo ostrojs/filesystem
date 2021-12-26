@@ -40,6 +40,7 @@ class filesystemServiceProvider extends ServiceProvider {
     getCloudDriver() {
         return this.$app['config']['filesystems.cloud'];
     }
+    
     boot() {
 
     }
