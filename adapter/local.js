@@ -97,7 +97,7 @@ class Local extends CoreAdapter {
                     } else {
                         callback(error, {
                             'type': 'file',
-                            'path': location,
+                            'path': $path,
                             'message': 'File created successfully'
                         }, location)
                     }
