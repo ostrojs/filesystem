@@ -1,14 +1,14 @@
 {
   "name": "@ostro/filesystem",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "filesystem module for OstroJS",
   "main": "filesystemManager.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@ostro/support": "^1.0.2",
-    "@ostro/contracts": "^1.0.0",
+    "@ostro/support": "^1.0.11",
+    "@ostro/contracts": "^1.0.2",
     "fs-extra": "^10.0.0",
     "lodash.get": "^4.4.2",
     "filehound": "^1.17.4",
