@@ -136,8 +136,10 @@ class Filesystem extends FilesystemContract {
         return fs.lstat($file).then(stats => stats.isFile()).catch(err => false);
     }
 
-    glob($pattern) {
-        return Finder.create().glob($pattern).find();
+    async glob($pattern) {
+        const dir = path.dirname($pattern);
+        const base = path.basename($pattern);
+        return Finder.create().path(dir).glob(base || "*").find()
     }
 
     requireOnce($path, $data = []) {
