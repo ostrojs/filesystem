@@ -1,19 +1,19 @@
 {
     "name": "@ostro/filesystem",
-    "version": "2.0.0-alpha.1",
+    "version": "2.0.0-alpha.2",
     "description": "filesystem module for OstroJS",
     "main": "build/filesystemManager.js",
-    "types": "build/filesystemManager.d.ts",
+    "types": "./build/types/filesystemManager.d.ts",
     "files": [
         "build"
     ],
     "exports": {
         ".": {
-            "types": "./build/filesystemManager.d.ts",
+            "types": "./build/types/filesystemManager.d.ts",
             "default": "./build/filesystemManager.js"
         },
         "./*": {
-            "types": "./build/*.d.ts",
+            "types": "./build/types/*.d.ts",
             "default": "./build/*.js"
         }
     },
@@ -24,8 +24,8 @@
         "clean": "rm -rf build coverage"
     },
     "dependencies": {
-        "@ostro/contracts": "^2.0.0-alpha.1",
-        "@ostro/support": "^2.0.0-alpha.1",
+        "@ostro/contracts": "^2.0.0-alpha.2",
+        "@ostro/support": "^2.0.0-alpha.2",
         "filehound": "^1.17.4",
         "fs-extra": "^11.4.1",
         "lodash.get": "^4.4.2",
