@@ -1,5 +1,4 @@
 import util from 'util';
-import '@ostro/support/helpers';
 import Manager from '@ostro/support/manager';
 import InvalidArgumentException from './invalidArgumentException';
 import FilesystemAdapter from './filesystemAdapter';
