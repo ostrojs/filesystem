@@ -1,6 +1,6 @@
 {
     "name": "@ostro/filesystem",
-    "version": "2.0.0-alpha.8",
+    "version": "2.0.0-alpha.9",
     "description": "filesystem module for OstroJS",
     "main": "filesystemManager.js",
     "types": ".types/filesystemManager.d.ts",
@@ -22,8 +22,8 @@
         "lint:check": "tsc --noEmit -p tsconfig.build.json"
     },
     "dependencies": {
-        "@ostro/contracts": "^2.0.0-alpha.8",
-        "@ostro/support": "^2.0.0-alpha.9",
+        "@ostro/contracts": "^2.0.0-alpha.9",
+        "@ostro/support": "^2.0.0-alpha.10",
         "filehound": "^1.17.6",
         "fs-extra": "^11.4.1",
         "uuid": "^11.1.1"
@@ -49,7 +49,7 @@
     },
     "homepage": "https://github.com/ostrojs/filesystem#readme",
     "devDependencies": {
-        "@ostro/builder": "^2.0.0-alpha.6",
+        "@ostro/builder": "^2.0.0-alpha.7",
         "@types/jest": "^30.0.0",
         "@types/node": "^22.0.0",
         "c8": "^10.1.3",
