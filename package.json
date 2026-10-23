@@ -1,20 +1,17 @@
 {
     "name": "@ostro/filesystem",
-    "version": "2.0.0-alpha.5",
+    "version": "2.0.0-alpha.6",
     "description": "filesystem module for OstroJS",
-    "main": "build/filesystemManager.js",
-    "types": "./build/types/filesystemManager.d.ts",
-    "files": [
-        "build"
-    ],
+    "main": "filesystemManager.js",
+    "types": "types/filesystemManager.d.ts",
     "exports": {
         ".": {
-            "types": "./build/types/filesystemManager.d.ts",
-            "default": "./build/filesystemManager.js"
+            "types": "./types/filesystemManager.d.ts",
+            "default": "./filesystemManager.js"
         },
         "./*": {
-            "types": "./build/types/*.d.ts",
-            "default": "./build/*.js"
+            "types": "./types/*.d.ts",
+            "default": "./*.js"
         }
     },
     "scripts": {
@@ -25,8 +22,8 @@
         "lint:check": "tsc --noEmit -p tsconfig.build.json"
     },
     "dependencies": {
-        "@ostro/contracts": "^2.0.0-alpha.5",
-        "@ostro/support": "^2.0.0-alpha.6",
+        "@ostro/contracts": "^2.0.0-alpha.6",
+        "@ostro/support": "^2.0.0-alpha.7",
         "filehound": "^1.17.6",
         "fs-extra": "^11.4.1",
         "uuid": "^11.1.1"
@@ -59,7 +56,7 @@
         "jest": "^30.5.2",
         "ts-jest": "^29.4.15",
         "ts-node": "^10.9.2",
-        "@ostro/builder": "^2.0.0-alpha.3"
+        "@ostro/builder": "^2.0.0-alpha.4"
     },
     "overrides": {
         "sprintf-js": "^1.1.3",
