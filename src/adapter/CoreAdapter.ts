@@ -1,18 +1,14 @@
-import path from 'path';
-import url from 'url';
+import path from 'node:path';
+import url from 'node:url';
 import { ensureDir } from 'fs-extra';
-
-const kConfig: unique symbol = Symbol('config');
-const kRootPath: unique symbol = Symbol('rootPath');
-const kRootUrlPath: unique symbol = Symbol('rootUrlPath');
 
 /**
  * Class CoreAdapter.
  */
 class CoreAdapter {
-    [kConfig]: Record<string, any> | null = null;
-    [kRootPath]: string = '';
-    [kRootUrlPath]: string = '';
+    #config: Record<string, any> | null = null;
+    #rootPath: string = '';
+    #rootUrlPath: string = '';
 
     /**
      * setConfig method.
@@ -20,7 +16,7 @@ class CoreAdapter {
      * @param config - Configuration object.
      */
     public setConfig(config: Record<string, any>): void {
-        this[kConfig] = config;
+        this.#config = config;
     }
 
     /**
@@ -29,7 +25,7 @@ class CoreAdapter {
      * @returns Configuration object or null.
      */
     public getConfig(): Record<string, any> | null {
-        return this[kConfig] || null;
+        return this.#config || null;
     }
 
     /**
@@ -38,7 +34,7 @@ class CoreAdapter {
      * @param root - Root directory path prefix.
      */
     public setPathPrefix(root: string): void {
-        this[kRootPath] = root;
+        this.#rootPath = root;
     }
 
     /**
@@ -47,7 +43,7 @@ class CoreAdapter {
      * @param root - Root URL prefix.
      */
     public setUrlPrefix(root: string): void {
-        this[kRootUrlPath] = root;
+        this.#rootUrlPath = root;
     }
 
     /**
@@ -57,7 +53,7 @@ class CoreAdapter {
      * @returns Resolved absolute path.
      */
     public applyPathPrefix(dest: string): string {
-        return path.resolve(path.join(this[kRootPath], path.join('/', path.normalize(dest))));
+        return path.resolve(path.join(this.#rootPath, path.join('/', path.normalize(dest))));
     }
 
     /**
@@ -67,7 +63,7 @@ class CoreAdapter {
      * @returns Resolved URL string.
      */
     public applyUrlPrefix(dest?: string): string {
-        return url.resolve(([this[kRootUrlPath], (dest || '')].join('/')), '');
+        return url.resolve(([this.#rootUrlPath, (dest || '')].join('/')), '');
     }
 
     /**

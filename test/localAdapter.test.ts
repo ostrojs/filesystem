@@ -1,5 +1,6 @@
+import { describe, test, expect, beforeEach, afterEach, jest } from "@jest/globals";
 import LocalAdapter from "../src/adapter/local";
-import path from "path";
+import path from "node:path";
 import fsExtra from "fs-extra";
 
 describe("LocalAdapter Unit Tests", () => {

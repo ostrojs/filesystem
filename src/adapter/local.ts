@@ -1,6 +1,6 @@
 import fs from 'fs-extra';
 import CoreAdapter from './CoreAdapter';
-import path from 'path';
+import path from 'node:path';
 import { v4 } from 'uuid';
 
 const kHandler: unique symbol = Symbol('handler');
@@ -101,8 +101,8 @@ class Local extends CoreAdapter {
      * @param callback - Result callback.
      */
     public has($path: string, options: { constants: keyof typeof fs.constants | string } = { constants: 'F_OK' }, callback: Function): void {
-        const location: string = this.applyPathPrefix($path);
-        fs.access(location, (fs.constants as any)[options.constants], (error) => {
+        const mode = fs.constants[options.constants as keyof typeof fs.constants] ?? fs.constants.F_OK;
+        fs.access(location, mode, (error) => {
             if (typeof this[kHandler].has == 'function') {
                 this[kHandler].has({
                     basePath: location,
