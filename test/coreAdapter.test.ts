@@ -1,5 +1,6 @@
+import { describe, test, expect, beforeEach } from "@jest/globals";
 import CoreAdapter from "../src/adapter/CoreAdapter";
-import path from "path";
+import path from "node:path";
 
 describe("CoreAdapter Unit Tests", () => {
     let adapter;

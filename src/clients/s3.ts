@@ -1,10 +1,5 @@
-const kConnection: unique symbol = Symbol('connection');
-
-/**
- * Class S3Client.
- */
 class S3Client {
-    [kConnection]: any;
+    #connection: any;
 
     /**
      * Create a new instance.
@@ -22,7 +17,7 @@ class S3Client {
      * @returns S3 instance.
      */
     public getConnection(): any {
-        return this[kConnection];
+        return this.#connection;
     }
 
     /**
@@ -33,7 +28,7 @@ class S3Client {
     public applyConnection($config: Record<string, any>): void {
         const awsSdk = require('aws-sdk');
         const S3 = awsSdk.S3;
-        this[kConnection] = new S3({
+        this.#connection = new S3({
             accessKeyId: $config['key'],
             secretAccessKey: $config['secret'],
             params: { Bucket: $config['bucket'] }

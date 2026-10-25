@@ -1,5 +1,6 @@
+import { describe, test, expect, beforeEach, afterEach, jest } from "@jest/globals";
 import LocalAdapter from "../src/adapter/local";
-import path from "path";
+import path from "node:path";
 import fsExtra from "fs-extra";
 
 describe("LocalAdapter Unit Tests", () => {
@@ -86,6 +87,14 @@ describe("LocalAdapter Unit Tests", () => {
         await new Promise((resolve) => {
             local.has("missing.txt", { constants: "F_OK" }, (err, exists) => {
                 expect(err).toBeDefined();
+                resolve();
+            });
+        });
+
+        await new Promise((resolve) => {
+            local.has("has.txt", { constants: "INVALID_MODE" as any }, (err, exists) => {
+                expect(err).toBeNull();
+                expect(exists).toBe(true);
                 resolve();
             });
         });
