@@ -101,6 +101,7 @@ class Local extends CoreAdapter {
      * @param callback - Result callback.
      */
     public has($path: string, options: { constants: keyof typeof fs.constants | string } = { constants: 'F_OK' }, callback: Function): void {
+        const location: string = this.applyPathPrefix($path);
         const mode = fs.constants[options.constants as keyof typeof fs.constants] ?? fs.constants.F_OK;
         fs.access(location, mode, (error) => {
             if (typeof this[kHandler].has == 'function') {

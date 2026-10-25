@@ -271,4 +271,11 @@ describe("Filesystem Class Unit Tests", () => {
         expect(await fs.copyDirectory(d1, path.join(tmpDir, "copyFail"))).toBe(false);
         require("fs-extra").copy = origCopy;
     });
+
+    test("glob with empty or dot pattern and local.has with fallback constants", async () => {
+        expect(await fs.glob("")).toEqual([]);
+        expect(await fs.glob(".")).toEqual([]);
+        const res = await fs.glob(path.join(tmpDir, "."));
+        expect(Array.isArray(res)).toBe(true);
+    });
 });

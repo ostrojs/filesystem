@@ -90,6 +90,14 @@ describe("LocalAdapter Unit Tests", () => {
                 resolve();
             });
         });
+
+        await new Promise((resolve) => {
+            local.has("has.txt", { constants: "INVALID_MODE" as any }, (err, exists) => {
+                expect(err).toBeNull();
+                expect(exists).toBe(true);
+                resolve();
+            });
+        });
     });
 
     test("createDir() creates subdirectories", async () => {
