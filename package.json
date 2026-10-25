@@ -1,6 +1,6 @@
 {
     "name": "@ostro/filesystem",
-    "version": "2.0.0-alpha.3",
+    "version": "2.0.0-alpha.4",
     "description": "filesystem module for OstroJS",
     "main": "filesystemManager.js",
     "types": ".typed/filesystemManager.d.ts",
