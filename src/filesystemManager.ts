@@ -1,4 +1,4 @@
-import util from 'util';
+import util from 'node:util';
 import Manager from '@ostro/support/manager';
 import InvalidArgumentException from './invalidArgumentException';
 import FilesystemAdapter from './filesystemAdapter';

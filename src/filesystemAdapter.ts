@@ -1,4 +1,4 @@
-import path from 'path';
+import path from 'node:path';
 import FileNotFoundException from './fileNotFoundException';
 import FileDeleteException from './fileDeleteException';
 import FileUploadException from './fileUploadException';

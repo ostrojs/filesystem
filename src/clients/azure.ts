@@ -1,12 +1,6 @@
-const kContainer: unique symbol = Symbol('container');
-const kConnection: unique symbol = Symbol('connection');
-
-/**
- * Class AzureClient.
- */
 class AzureClient {
-    [kContainer]: any;
-    [kConnection]: any;
+    #container: any;
+    #connection: any;
 
     /**
      * Create a new instance.
@@ -14,8 +8,8 @@ class AzureClient {
      * @param $config - Azure connection configuration.
      */
     constructor($config: Record<string, any>) {
-        this[kConnection] = this.getConnection($config['account'], Buffer.from($config['key'], 'base64').toString('ascii'));
-        this[kContainer] = this.getContainer($config['container']);
+        this.#connection = this.getConnection($config['account'], Buffer.from($config['key'], 'base64').toString('ascii'));
+        this.#container = this.getContainer($config['container']);
         return this;
     }
 
@@ -36,7 +30,7 @@ class AzureClient {
                 new StorageSharedKeyCredential(account!, key!)
             );
         }
-        return this[kConnection];
+        return this.#connection;
     }
 
     /**
@@ -47,9 +41,9 @@ class AzureClient {
      */
     public getContainer(container?: string): any {
         if (container) {
-            return this[kConnection].getContainerClient(container);
+            return this.#connection.getContainerClient(container);
         }
-        return this[kContainer];
+        return this.#container;
     }
 }
 

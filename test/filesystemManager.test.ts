@@ -1,3 +1,4 @@
+import { describe, test, expect, beforeEach, jest } from "@jest/globals";
 jest.mock("aws-sdk", () => ({
     S3: jest.fn().mockImplementation(() => ({}))
 }), { virtual: true });
@@ -12,7 +13,7 @@ jest.mock("@azure/storage-blob", () => ({
 import FilesystemManager from "../src/filesystemManager";
 import FilesystemServiceProvider from "../src/filesystemServiceProvider";
 import Filesystem from "../src/filesystem";
-import path from "path";
+import path from "node:path";
 
 describe("FilesystemManager and ServiceProvider Unit Tests", () => {
     let appMock: any;
@@ -144,7 +145,7 @@ describe("FilesystemManager and ServiceProvider Unit Tests", () => {
         const mgr = singletons["filesystem"](app);
         expect(mgr).toBeInstanceOf(FilesystemManager);
 
-        (app as any)["filesystem"] = mgr;
+        (app as unknown as Record<string, unknown>)["filesystem"] = mgr;
         expect(singletons["filesystem.disk"](app)).toBeDefined();
         expect(singletons["filesystem.cloud"](app)).toBeDefined();
     });
